@@ -1,0 +1,9 @@
+.idea/
+.awcache/
+dist/
+node_modules/
+typings/
+target/
+*.log
+*.tgz
+*.iml
