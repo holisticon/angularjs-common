@@ -2,17 +2,17 @@ require('babel-register');
 
 var path = require('path');
 var webpackConfig = require('./webpack.test.js');
-webpackConfig.entry = {};
 
-var appConfig = require(process.env.APP_CONFIG || './appConfig');
+var helpers = require('./helpers');
+var appConfig = helpers.getAppConfig();
 
 var srcPath = appConfig.srcPath;
-var srcApp = appConfig.srcApp;
+var appPath = appConfig.appPath;
 var testPath = appConfig.testPath;
 var testSpecs = appConfig.testSpecs;
-var appPath = appConfig.srcApp;
 var templatesPath = appConfig.templatesPath;
 
+webpackConfig.entry = {};
 
 module.exports = function (config) {
   'use strict';
@@ -30,7 +30,7 @@ module.exports = function (config) {
     files: [
       'node_modules/angular/angular.min.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      srcApp,
+      appPath,
       {pattern: testSpecs, watched: false}
     ],
 
@@ -68,7 +68,7 @@ module.exports = function (config) {
 
     preprocessors: {
       [templatesPath]: ['ng-html2js'],
-      [srcApp]: ['webpack', 'sourcemap'],
+      [appPath]: ['webpack', 'sourcemap'],
       [testSpecs]: ['webpack', 'sourcemap']
     },
 
@@ -92,7 +92,9 @@ module.exports = function (config) {
 
     logLevel: config.LOG_INFO
   });
+
+  // TODO move to config
   config.proxies = {
     '/scripts/': 'http://localhost:' + config.port + '/base/src/main/frontend/scripts/'
-  }
+  };
 };

@@ -2,11 +2,11 @@
  * @author: @mreinhardt
  */
 
-const appConfig = require(process.env.APP_CONFIG || './appConfig');
 const helpers = require('./helpers');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
+const appConfig = helpers.getAppConfig();
 
 /**
  * Webpack Plugins

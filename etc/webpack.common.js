@@ -5,7 +5,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const helpers = require('./helpers');
-const appConfig = require(process.env.APP_CONFIG || './appConfig');
+const appConfig = helpers.getAppConfig();
 
 /*
  * Webpack Plugins
@@ -250,7 +250,7 @@ module.exports = {
       to: path.join(appConfig.dist, 'views')
     }, {
       from: path.join(appConfig.templates),
-      to: path.join(appConfig.dist, appConfig.templatesPath)
+      to: path.join(appConfig.dist, appConfig.templates)
     }, {
       context: path.join(appConfig.src),
       from: '*.json',
