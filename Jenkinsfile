@@ -31,7 +31,7 @@ node {
 
     stage('Test') {
       sh "npm run test"
-      junit 'target/test-reports/TEST-*.xml'
+      junit 'target/test-reports/TESTS-*.xml'
     }
 
     stage('Publish NPM snapshot') {
