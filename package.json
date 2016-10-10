@@ -4,10 +4,12 @@
   "description": "Common angular build module for AngularJS 1.x",
   "main": "index.js",
   "scripts": {
+    "build": "npm run check",
     "debug": "cross-env NODE_ENV=test karma start karma.conf.js",
     "test": "cross-env NODE_ENV=test karma start karma.conf.ci.js",
     "posttest": "npm run check",
-    "check": "eslint lib && eslint etc && nsp check"
+    "eslint": "eslint lib && eslint etc",
+    "check": "npm run eslint && nsp check"
   },
   "dependencies": {
     "angular": "1.5.8",
