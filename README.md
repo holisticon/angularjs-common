@@ -24,5 +24,57 @@ npm install @holisticon/angularjs-common@next --save
 ```
 
 ## Usage
+* Create an config path, e.g. etc/appConfig.js:
+```javascript
+var path = require("path");
+// resolve paths
+var sourceRoot = path.resolve(__dirname, '..', 'src', 'main', 'frontend'),
+  testRoot = path.resolve(__dirname, '..', 'src', 'test', 'frontend'),
+  distRoot = path.resolve(__dirname, '..', 'src', 'main', 'resources', 'static');
+// overwrite defaults
+var appConfig = {
+  srcPath: 'src/main/frontend',
+  testPath: 'src/test/frontend',
+  entry: {
+    app: sourceRoot + '/scripts/app.js',
+    salesboard: sourceRoot + '/scripts/app.salesboard.js',
+    assignment: sourceRoot + '/scripts/app.assignment.js'
+  },
+  srcApp: path.resolve(sourceRoot, 'app'),
+  testApp: path.resolve(testRoot, 'specs'),
+  srcSASS: path.resolve(sourceRoot, 'scss'),
+  srcI18N: path.resolve(sourceRoot, 'app', 'i18n'),
+  srcIMG: path.resolve(sourceRoot, 'img'),
+  dist: distRoot
+};
+module.exports = appConfig;
 
-TODO
+```
+And provide a dummy files for
+* karma.conf.js:
+```javascript
+process.env['APP_CONFIG'] = require("path").resolve(__dirname, 'etc', 'appConfig.js');
+module.exports = require('@holisticon/angularjs-common').karma;
+```
+* karma.conf.ci.js:
+```javascript
+process.env['APP_CONFIG'] = require("path").resolve(__dirname, 'etc', 'appConfig.js');
+module.exports = require('@holisticon/angularjs-common').karma_ci;
+```
+* webpack.config.js:
+```javascript
+process.env['APP_CONFIG'] = require("path").resolve(__dirname, 'etc', 'appConfig.js');
+module.exports = require('@holisticon/angularjs-common').webpack;
+```
+* Append following entries to your package.json:
+```javascript
+  ...
+  "scripts": {
+    "start": "npm install && npm run watch",
+    "watch": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --colors --progress --display-error-details --port 3000 ",
+    "build": "cross-env NODE_ENV=production webpack",
+    "test": "cross-env NODE_ENV=test karma start etc/karma.conf.ci.js",
+    "debug": "cross-env NODE_ENV=test karma start etc/karma.conf.js"
+  },
+  ...
+```
