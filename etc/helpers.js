@@ -53,7 +53,7 @@ function getAppConfig() { /*eslint complexity: ["error", 22]*/
     srcSASS: appConfig.srcSASS || path.resolve(sourceResolved, 'scss'),
     srcI18N: appConfig.srcI18N || path.resolve(sourceResolved, 'app', 'i18n'),
     srcIMG: appConfig.srcIMG || path.resolve(sourceResolved, 'img'),
-    modulesPath: appConfig.modulesPath || path.resolve(__dirname, '..', 'node_modules'),
+    modulesPath: appConfig.modulesPath || path.resolve(basePath, 'node_modules'),
     testSpecs: testPath + '/specs/**/*.js',
     distPath: distPath,
     dist: appConfig.dist || path.resolve(distPath),
