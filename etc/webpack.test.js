@@ -16,7 +16,7 @@ const DefinePlugin = require('webpack/lib/DefinePlugin');
 /**
  * Webpack Constants
  */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
+const ENV = process.env.ENV || process.env.NODE_ENV || 'test';
 
 /**
  * Webpack configuration

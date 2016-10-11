@@ -22,7 +22,7 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 /**
  * Webpack Constants
  */
-const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+const ENV = process.env.ENV || process.env.NODE_ENV || 'production';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 8080;
 const METADATA = webpackMerge(commonConfig.metadata, {
