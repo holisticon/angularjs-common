@@ -6,8 +6,8 @@
   "scripts": {
     "build": "npm run check",
     "debug": "cross-env NODE_ENV=test karma start etc/karma.conf.js",
+    "pretest": "npm run eslint",
     "test": "cross-env NODE_ENV=test karma start etc/karma.conf.ci.js",
-    "posttest": "npm run check",
     "eslint": "eslint lib && eslint etc",
     "check": "npm run eslint && nsp check"
   },
@@ -84,8 +84,9 @@
     "angular-mocks": "1.5.8"
   },
   "peerDependencies": {
-    "angular": "1.5.8",
-    "angular-mocks": "1.5.8"
+    "angular": "^1.5.8",
+    "angular-mocks": "^1.5.8",
+    "cross-env": "^3.1.2"
   },
   "keywords": [
     "angularjs",
