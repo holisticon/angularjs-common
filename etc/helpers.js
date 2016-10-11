@@ -36,7 +36,7 @@ function getAppConfig() { /*eslint complexity: ["error", 22]*/
     testPath = appConfig.testPath || defaultAppConfig.testPath,
     sourceResolved = path.resolve(basePath, srcPath),
     testPathResolved = path.resolve(basePath, testPath),
-    templatesPath = appConfig.templates || defaultAppConfig.templates,
+    templatesPath = appConfig.templatesPath || defaultAppConfig.templatesPath,
     distPath = appConfig.distPath || defaultAppConfig.distPath,
     genPath = appConfig.genPath || defaultAppConfig.genPath,
     templatesResolved = path.resolve(basePath, templatesPath),
