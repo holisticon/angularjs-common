@@ -1,5 +1,5 @@
 /**
- * @author: @martinreinhardt
+ * @author: @hypery2k
  */
 
 var helpers = require('./helpers');

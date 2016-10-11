@@ -1,5 +1,3 @@
-//import "../app";
-
 describe('Test Controller', () => {
 
   let controller;

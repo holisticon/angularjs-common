@@ -4,8 +4,12 @@
 
 const webpack = require('webpack');
 const path = require('path');
+const util = require('util');
+const debugLog = util.debuglog('@holisticon/angularjs-common/helpers');
 const helpers = require('./helpers');
 const appConfig = helpers.getAppConfig();
+
+debugLog('Using following appConfig:', appConfig);
 
 /*
  * Webpack Plugins

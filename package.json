@@ -5,18 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run check",
-    "debug": "cross-env NODE_ENV=test karma start karma.conf.js",
-    "test": "cross-env NODE_ENV=test karma start karma.conf.ci.js",
+    "debug": "cross-env NODE_ENV=test karma start etc/karma.conf.js",
+    "test": "cross-env NODE_ENV=test karma start etc/karma.conf.ci.js",
     "posttest": "npm run check",
     "eslint": "eslint lib && eslint etc",
     "check": "npm run eslint && nsp check"
   },
   "dependencies": {
-    "angular": "1.5.8",
     "angular-mocks": "1.5.8",
-    "eslint-plugin-import": "2.0.0"
-  },
-  "devDependencies": {
     "babel-core": "6.17.0",
     "babel-loader": "6.2.5",
     "babel-plugin-transform-class-properties": "6.16.0",
@@ -83,6 +79,9 @@
     "webpack-md5-hash": "0.0.5",
     "webpack-merge": "0.14.1",
     "xml2js": "0.4.17"
+  },
+  "peerDependencies": {
+    "angular": "1.5.8"
   },
   "keywords": [
     "angularjs",

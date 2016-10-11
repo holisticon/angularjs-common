@@ -1,4 +1,6 @@
-var path = require('path');
+const path = require('path');
+const util = require('util');
+const debugLog = util.debuglog('@holisticon/angularjs-common/helpers');
 const defaultAppConfig = require('./appConfig');
 const appConfig = require(process.env.APP_CONFIG || './appConfig');
 
@@ -28,7 +30,7 @@ function checkNodeImport(context, request, cb) {
 
 function getAppConfig() { /*eslint complexity: ["error", 22]*/
 
-  var basePath = path.resolve(__dirname, '..'),
+  var basePath = path.resolve(process.cwd()),
     appName = appConfig.appName || defaultAppConfig.appName,
     srcPath = appConfig.srcPath || defaultAppConfig.srcPath,
     testPath = appConfig.testPath || defaultAppConfig.testPath,
@@ -39,13 +41,13 @@ function getAppConfig() { /*eslint complexity: ["error", 22]*/
     genPath = appConfig.genPath || defaultAppConfig.genPath,
     templatesResolved = path.resolve(basePath, templatesPath),
     appPath = appConfig.appPath || defaultAppConfig.appPath;
-  return {
+  var config = {
     srcPath: srcPath,
     testPath: testPath,
-    appPath: appPath || srcPath + '/scripts/' + appName,
+    appPath: appPath || srcPath + '/' + appName,
     src: sourceResolved,
     test: testPathResolved,
-    templates: templatesResolved || srcPath + '/scripts/' + templatesPath,
+    templates: templatesResolved || srcPath + '/' + templatesPath,
     app: path.resolve(basePath, appPath),
     templatesPath: templatesPath,
     srcSASS: appConfig.srcSASS || path.resolve(sourceResolved, 'scss'),
@@ -63,7 +65,9 @@ function getAppConfig() { /*eslint complexity: ["error", 22]*/
     mangle: appConfig.mangle || defaultAppConfig.mangle,
     proxy: appConfig.proxy || defaultAppConfig.proxy,
     title: appConfig.title || defaultAppConfig.title
-  }
+  };
+  debugLog('Using following appConfig:', config);
+  return config;
 }
 
 exports.getAppConfig = getAppConfig;

@@ -2,6 +2,10 @@
 .awcache/
 dist/
 node_modules/
+test/e2e/.awcache/
+test/e2e/dist/
+test/e2e/node_modules/
+test/e2e/target/
 typings/
 target/
 *.log
