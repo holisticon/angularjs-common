@@ -28,7 +28,7 @@ function checkNodeImport(context, request, cb) {
   cb();
 }
 
-function getAppConfig() { /*eslint complexity: ["error", 22]*/
+function getAppConfig() { /*eslint complexity: [error, 22]*/
 
   var basePath = path.resolve(process.cwd()),
     appName = appConfig.appName || defaultAppConfig.appName,
