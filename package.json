@@ -12,7 +12,6 @@
     "check": "npm run eslint && nsp check"
   },
   "dependencies": {
-    "angular-mocks": "1.5.8",
     "babel-core": "6.17.0",
     "babel-loader": "6.2.5",
     "babel-plugin-transform-class-properties": "6.16.0",
@@ -80,8 +79,13 @@
     "webpack-merge": "0.14.1",
     "xml2js": "0.4.17"
   },
+  "devDependencies": {
+    "angular": "1.5.8",
+    "angular-mocks": "1.5.8"
+  },
   "peerDependencies": {
-    "angular": "1.5.8"
+    "angular": "1.5.8",
+    "angular-mocks": "1.5.8"
   },
   "keywords": [
     "angularjs",
