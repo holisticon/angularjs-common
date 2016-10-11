@@ -1,13 +1,13 @@
 {
   "name": "@holisticon/angularjs-common",
-  "version": "0.2.1",
+  "version": "0.2.2-dev",
   "description": "Common angular build module for AngularJS 1.x",
   "main": "index.js",
   "scripts": {
     "build": "npm run eslint",
     "debug": "cross-env NODE_ENV=test karma start etc/karma.conf.js",
     "test": "cross-env NODE_ENV=test karma start etc/karma.conf.ci.js",
-    "eslint": "eslint lib && eslint etc",
+    "eslint": "eslint \"lib/*\" && eslint \"etc/*\"",
     "check": "npm run eslint && nsp check"
   },
   "dependencies": {
