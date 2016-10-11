@@ -173,7 +173,6 @@ module.exports = webpackMerge(commonConfig, {
       }, //prod
       comments: false //prod
     })
-
   ],
 
   /**
