@@ -6,7 +6,7 @@ var appConfig = {
   appPath: srcPath + '/app.js',
   srcPath: srcPath,
   testPath: 'test',
-  templates: 'templates',
+  templatesPath: 'templates',
   distPath: 'dist',
   genPath: 'src-gen',
   globals: {
