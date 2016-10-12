@@ -76,6 +76,7 @@
     "webpack-dev-server": "1.16.2",
     "webpack-md5-hash": "0.0.5",
     "webpack-merge": "0.14.1",
+    "webpack-visualizer-plugin": "0.1.5",
     "xml2js": "0.4.17"
   },
   "devDependencies": {

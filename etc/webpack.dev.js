@@ -14,6 +14,7 @@ const appConfig = helpers.getAppConfig();
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
+const VisualizerPlugin = require('webpack-visualizer-plugin');
 /**
  * Webpack Constants
  */
@@ -125,6 +126,10 @@ module.exports = webpackMerge(commonConfig, {
       from: path.join(appConfig.src, 'scripts', 'templates'),
       to: path.join(appConfig.dist, 'scripts', 'templates')
     }]),
+    // see https://github.com/chrisbateman/webpack-visualizer#plugin-usage
+    new VisualizerPlugin({
+      filename: './statistics.html'
+    }),
     /**
      * Plugin: DefinePlugin
      * Description: Define free variables.
