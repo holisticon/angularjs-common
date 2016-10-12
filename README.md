@@ -83,7 +83,7 @@ module.exports = require('@holisticon/angularjs-common').webpack;
 ```
 
 If you run `npm run watch` you can see your dependency statistics at [localhost:3000/statistics.html](http://localhost:3000/statistics.html):
-![WEBPACK VISUALIZER][docs/webpack_visualizer.png]
+![WEBPACK VISUALIZER](docs/webpack_visualizer.png)
 
 ### Advanced Usage
 
