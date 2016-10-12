@@ -58,6 +58,7 @@ function getAppConfig() { /*eslint complexity: [error, 22]*/
     distPath: distPath,
     dist: appConfig.dist || path.resolve(distPath),
     genPath: genPath,
+    indexFiles: appConfig.indexFiles || defaultAppConfig.indexFiles,
     gen: appConfig.gen || path.resolve(genPath),
     globals: appConfig.globals || defaultAppConfig.globals,
     index: appConfig.index || path.resolve(srcPath, 'index.html'),

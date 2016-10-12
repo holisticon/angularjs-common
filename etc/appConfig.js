@@ -17,6 +17,11 @@ var appConfig = {
   chunks: {
     name: ['polyfills', 'vendor'].reverse()
   },
+  indexFiles: [{
+    template: appConfig.index,
+    chunks: ['app', 'polyfills', 'vendor'],
+    chunksSortMode: 'dependency'
+  }],
   entry: {
     app: srcPath + '/app.js'
   },

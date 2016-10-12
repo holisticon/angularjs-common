@@ -27,13 +27,13 @@ const METADATA = {
   isDevServer: helpers.isWebpackDevServer()
 };
 
+
 /*
  * Webpack configuration
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-
-module.exports = {
+var config = {
 
   bail: true,
 
@@ -267,19 +267,6 @@ module.exports = {
       add: true,
       single_quotes: true
     }),
-    /*
-     * Plugin: HtmlWebpackPlugin
-     * Description: Simplifies creation of HTML files to serve your webpack bundles.
-     * This is especially useful for webpack bundles that include a hash in the filename
-     * which changes every compilation.
-     *
-     * See: https://github.com/ampedandwired/html-webpack-plugin
-     */
-    new HtmlWebpackPlugin({
-      template: appConfig.index,
-      chunks: ['app', 'polyfills', 'vendor'],
-      chunksSortMode: 'dependency'
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
@@ -300,5 +287,18 @@ module.exports = {
     clearImmediate: false,
     setImmediate: false
   }
-
 };
+
+/*
+ * Plugin: HtmlWebpackPlugin
+ * Description: Simplifies creation of HTML files to serve your webpack bundles.
+ * This is especially useful for webpack bundles that include a hash in the filename
+ * which changes every compilation.
+ *
+ * See: https://github.com/ampedandwired/html-webpack-plugin
+ */
+for (let indexConfig of appConfig.indexFiles) {
+  config.plugins.push(new HtmlWebpackPlugin(indexConfig));
+}
+
+module.exports = config;
