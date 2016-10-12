@@ -4,6 +4,8 @@
 
 const helpers = require('./helpers');
 const path = require('path');
+const util = require('util');
+const debugLog = util.debuglog('@holisticon/angularjs-common/webpack.dev');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
 const appConfig = helpers.getAppConfig();
@@ -32,7 +34,7 @@ const METADATA = webpackMerge(commonConfig.metadata, {
  *
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
-module.exports = webpackMerge(commonConfig, {
+var config = webpackMerge(commonConfig, {
 
 
   /**
@@ -191,3 +193,7 @@ module.exports = webpackMerge(commonConfig, {
     setImmediate: false
   }
 });
+
+debugLog('Using following webpack dev config:', config);
+module.exports = config;
+

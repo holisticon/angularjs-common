@@ -3,6 +3,8 @@
  */
 
 const helpers = require('./helpers');
+const util = require('util');
+const debugLog = util.debuglog('@holisticon/angularjs-common/webpack.dev');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common
 const appConfig = helpers.getAppConfig();
@@ -24,7 +26,7 @@ const ENV = process.env.ENV || process.env.NODE_ENV || 'test';
  * See: http://webpack.github.io/docs/configuration.html#cli
  */
 
-module.exports = webpackMerge(commonConfig, {
+var config = webpackMerge(commonConfig, {
 
   /**
    * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
@@ -58,3 +60,6 @@ module.exports = webpackMerge(commonConfig, {
     ]
   }
 });
+
+debugLog('Using following webpack test config:', config);
+module.exports = config;

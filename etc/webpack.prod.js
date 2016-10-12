@@ -3,6 +3,8 @@
  */
 
 const helpers = require('./helpers');
+const util = require('util');
+const debugLog = util.debuglog('@holisticon/angularjs-common/webpack.prod');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
@@ -32,7 +34,7 @@ const METADATA = webpackMerge(commonConfig.metadata, {
   HMR: false
 });
 
-module.exports = webpackMerge(commonConfig, {
+var config = webpackMerge(commonConfig, {
 
   /**
    * Switch loaders to debug mode.
@@ -206,5 +208,7 @@ module.exports = webpackMerge(commonConfig, {
     setImmediate: false
   }
 
-})
-;
+});
+
+debugLog('Using following webpack prod config:', config);
+module.exports = config;

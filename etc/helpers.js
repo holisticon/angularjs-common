@@ -67,6 +67,7 @@ function getAppConfig() { /*eslint complexity: [error, 22]*/
     genPath: genPath,
     indexFiles: indexFiles,
     gen: appConfig.gen || path.resolve(genPath),
+    chunks: appConfig.chunks || defaultAppConfig.chunks,
     globals: appConfig.globals || defaultAppConfig.globals,
     entry: appConfig.entry || defaultAppConfig.entry,
     mangle: appConfig.mangle || defaultAppConfig.mangle,

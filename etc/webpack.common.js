@@ -3,9 +3,9 @@
  */
 
 const webpack = require('webpack');
-const path = require('path');
 const util = require('util');
-const debugLog = util.debuglog('@holisticon/angularjs-common/helpers');
+const debugLog = util.debuglog('@holisticon/angularjs-common/webpack.common');
+const path = require('path');
 const helpers = require('./helpers');
 const appConfig = helpers.getAppConfig();
 
@@ -301,4 +301,5 @@ for (var indexConfig of appConfig.indexFiles) {
   config.plugins.push(new HtmlWebpackPlugin(indexConfig));
 }
 
+debugLog('Using following webpack common config:', config);
 module.exports = config;
