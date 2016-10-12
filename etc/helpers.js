@@ -28,7 +28,7 @@ function checkNodeImport(context, request, cb) {
   cb();
 }
 
-function getAppConfig() { /*eslint complexity: [error, 23]*/
+function getAppConfig() { /*eslint complexity: [error, 22]*/
 
   var basePath = path.resolve(process.cwd()),
     appName = appConfig.appName || defaultAppConfig.appName,
@@ -39,8 +39,7 @@ function getAppConfig() { /*eslint complexity: [error, 23]*/
     templatesPath = appConfig.templatesPath || defaultAppConfig.templatesPath,
     distPath = appConfig.distPath || defaultAppConfig.distPath,
     genPath = appConfig.genPath || defaultAppConfig.genPath,
-    templatesResolved = path.resolve(basePath, templatesPath),
-    appPath = appConfig.appPath || defaultAppConfig.appPath;
+    templatesResolved = path.resolve(basePath, templatesPath);
   var indexFiles = defaultAppConfig.indexFiles;
   if (appConfig.indexFiles) {
     indexFiles = appConfig.indexFiles;
@@ -51,11 +50,9 @@ function getAppConfig() { /*eslint complexity: [error, 23]*/
   var config = {
     srcPath: srcPath,
     testPath: testPath,
-    appPath: appPath || srcPath + '/' + appName,
     src: sourceResolved,
     test: testPathResolved,
     templates: templatesResolved || srcPath + '/' + templatesPath,
-    app: path.resolve(basePath, appPath),
     templatesPath: templatesPath,
     srcSASS: appConfig.srcSASS || path.resolve(sourceResolved, 'scss'),
     srcI18N: appConfig.srcI18N || path.resolve(sourceResolved, 'app', 'i18n'),

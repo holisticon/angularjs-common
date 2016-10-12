@@ -1,6 +1,8 @@
 require('babel-register');
 
 var path = require('path');
+var util = require('util');
+var debugLog = util.debuglog('@holisticon/angularjs-common/karma.conf');
 var webpackConfig = require('./webpack.test.js');
 
 var helpers = require('./helpers');
@@ -28,10 +30,9 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/angular/angular.min.js',
+      'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      appPath,
-      {pattern: testSpecs, watched: false}
+      '**/*.html'
     ],
 
     // list of files / patterns to exclude
@@ -67,9 +68,7 @@ module.exports = function (config) {
     },
 
     preprocessors: {
-      [templatesPath]: ['ng-html2js'],
-      [appPath]: ['webpack', 'sourcemap'],
-      [testSpecs]: ['webpack', 'sourcemap']
+      ['**/*.html']: ['ng-html2js']
     },
 
     ngHtml2JsPreprocessor: {
@@ -92,9 +91,18 @@ module.exports = function (config) {
 
     logLevel: config.LOG_INFO
   });
-
   // TODO move to config
   config.proxies = {
     '/scripts/': 'http://localhost:' + config.port + '/base/src/main/frontend/scripts/'
   };
+  for (var key in appConfig.entry) {
+    if (key) {
+      config.files.push(appConfig.entry[key]);
+      config.preprocessors[appConfig.entry[key]] = ['webpack', 'sourcemap'];
+    }
+  }
+  config.files.push({pattern: testSpecs, watched: false});
+  config.preprocessors[testSpecs] = ['webpack', 'sourcemap'];
+
+  debugLog('Using following karma config:', config);
 };

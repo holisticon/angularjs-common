@@ -255,7 +255,7 @@ var config = {
       to: path.join(appConfig.dist, appConfig.templates)
     }, {
       context: path.join(appConfig.src),
-      from: '*.json',
+      from: '*.*',
       to: path.join(appConfig.dist)
     }, {
       context: path.join(appConfig.gen),

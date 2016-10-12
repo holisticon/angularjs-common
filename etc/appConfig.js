@@ -3,7 +3,6 @@ var path = require("path"),
 
 var appConfig = {
   appName: 'app.js',
-  appPath: srcPath + '/app.js',
   srcPath: srcPath,
   testPath: 'test',
   templatesPath: 'templates',
