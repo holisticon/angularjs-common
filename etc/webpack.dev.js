@@ -76,7 +76,7 @@ module.exports = webpackMerge(commonConfig, {
      *
      * See: http://webpack.github.io/docs/configuration.html#output-filename
      */
-    filename: 'bundle.js',
+    filename: 'bundle.[name].js',
 
     /**
      * The filename of the SourceMaps for the JavaScript files.
