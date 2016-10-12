@@ -297,7 +297,7 @@ var config = {
  *
  * See: https://github.com/ampedandwired/html-webpack-plugin
  */
-for (let indexConfig of appConfig.indexFiles) {
+for (var indexConfig of appConfig.indexFiles) {
   config.plugins.push(new HtmlWebpackPlugin(indexConfig));
 }
 
