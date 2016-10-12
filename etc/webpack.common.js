@@ -252,7 +252,7 @@ var config = {
       to: path.join(appConfig.dist, 'views')
     }, {
       from: path.join(appConfig.templates),
-      to: path.join(appConfig.dist, appConfig.templates)
+      to: path.join(appConfig.dist, appConfig.templates.replace(appConfig.src, ''))
     }, {
       context: path.join(appConfig.src),
       from: '*.*',
