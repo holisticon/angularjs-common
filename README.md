@@ -17,7 +17,7 @@
 npm install @holisticon/angularjs-common --save
 ```
 
-Or if you want to use the development version (nightly build), which maybe not stable!:
+Or if you want to use the development version (nightly build), which maybe **not stable**:
 
 ```
 npm install @holisticon/angularjs-common@next --save
