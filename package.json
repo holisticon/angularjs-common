@@ -81,7 +81,8 @@
   },
   "devDependencies": {
     "angular": "1.5.8",
-    "angular-mocks": "1.5.8"
+    "angular-mocks": "1.5.8",
+    "eslint-plugin-es6-recommended": "0.1.2"
   },
   "peerDependencies": {
     "angular": "^1.5.8",
