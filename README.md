@@ -24,6 +24,9 @@ npm install @holisticon/angularjs-common@next --save
 ```
 
 ## Usage
+
+### Basic Usage
+
 * Create an config path, e.g. etc/appConfig.js:
 ```javascript
 var path = require("path");
@@ -77,4 +80,107 @@ module.exports = require('@holisticon/angularjs-common').webpack;
     "debug": "cross-env NODE_ENV=test karma start etc/karma.conf.js"
   },
   ...
+```
+
+If you run `npm run watch` you can see your dependency statistics at [localhost:3000/statistics.html](http://localhost:3000/statistics.html):
+![WEBPACK VISUALIZER][docs/webpack_visualizer.png]
+
+### Advanced Usage
+
+* Multiple apps:
+
+```
+var path = require("path");
+
+// resolve paths
+var sourceRoot = path.resolve(__dirname, '..', 'src', 'main', 'frontend'),
+  testRoot = path.resolve(__dirname, '..', 'src', 'test', 'frontend'),
+  distRoot = path.resolve(__dirname, '..', 'src', 'main', 'resources', 'static');
+// overwrite defaults
+var appConfig = {
+  srcPath: 'src/main/frontend',
+  testPath: 'src/test/frontend',
+  templatesPath: 'src/main/frontend/scripts/templates',
+  entry: {
+    app: sourceRoot + '/scripts/app.js',
+    salesboard: sourceRoot + '/scripts/app.salesboard.js',
+    assignment: sourceRoot + '/scripts/app.assignment.js'
+  },
+  index: 'src/main/frontend/index.html',
+  srcApp: path.resolve(sourceRoot, 'app'),
+  testApp: path.resolve(testRoot, 'specs'),
+  srcSASS: path.resolve(sourceRoot, 'scss'),
+  srcI18N: path.resolve(sourceRoot, 'app', 'i18n'),
+  srcIMG: path.resolve(sourceRoot, 'img'),
+  dist: distRoot,
+  proxy: {
+    '*': 'http://localhost:8080' // REST service
+  }
+};
+module.exports = appConfig;var path = require("path");
+
+// resolve paths
+var sourceRoot = path.resolve(__dirname, '..', 'src', 'main', 'frontend'),
+  testRoot = path.resolve(__dirname, '..', 'src', 'test', 'frontend'),
+  distRoot = path.resolve(__dirname, '..', 'src', 'main', 'resources', 'static');
+// overwrite defaults
+var appConfig = {
+  srcPath: 'src/main/frontend',
+  testPath: 'src/test/frontend',
+  appPath: 'src/main/frontend/scripts/app*.js',
+  templatesPath: 'src/main/frontend/scripts/templates',
+  entry: {
+    app: sourceRoot + '/scripts/app.js',
+    salesboard: sourceRoot + '/scripts/app.salesboard.js',
+    assignment: sourceRoot + '/scripts/app.assignment.js'
+  },
+  chunks: {
+    filename: "commons.[chunkhash].chunk.js",
+    name: "commons"
+  },
+  indexFiles: [{
+    filename: 'index.html',
+    template: 'src/main/frontend/index.html',
+    chunks: ['app', 'commons'],
+    chunksSortMode: 'dependency'
+  }, {
+    filename: 'salesboard.html',
+    template: 'src/main/frontend/salesboard.html',
+    chunks: ['salesboard', 'commons'],
+    chunksSortMode: 'dependency'
+  }, {
+    filename: 'assignment.html',
+    template: 'src/main/frontend/assignment.html',
+    chunks: ['assignment', 'commons'],
+    chunksSortMode: 'dependency'
+  }],
+  srcApp: path.resolve(sourceRoot, 'app'),
+  testApp: path.resolve(testRoot, 'specs'),
+  srcSASS: path.resolve(sourceRoot, 'scss'),
+  srcI18N: path.resolve(sourceRoot, 'app', 'i18n'),
+  srcIMG: path.resolve(sourceRoot, 'img'),
+  dist: distRoot,
+  proxy: {
+    '*': 'http://localhost:8080' // REST service
+  }
+};
+module.exports = appConfig;
+
+```
+
+```
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const appConfig = require('./etc/appConfig');
+process.env['APP_CONFIG'] = require("path").resolve(__dirname, 'etc', 'appConfig.js');
+var webpackConfig = require('@holisticon/angularjs-common').webpack;
+// show only de and en locale
+webpackConfig.plugins.push(
+  new webpack.NormalModuleReplacementPlugin(
+    /moment[\/\\]locale$/,
+    /de|en/
+  )
+);
+module.exports = webpackConfig;
+
 ```
