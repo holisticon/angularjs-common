@@ -41,6 +41,13 @@ function getAppConfig() { /*eslint complexity: [error, 22]*/
     genPath = appConfig.genPath || defaultAppConfig.genPath,
     templatesResolved = path.resolve(basePath, templatesPath),
     appPath = appConfig.appPath || defaultAppConfig.appPath;
+  var indexFiles = defaultAppConfig.indexFiles;
+  if (appConfig.indexFiles) {
+    indexFiles = appConfig.indexFiles;
+  } else {
+    // refresh with current source path
+    indexFiles[0].template = path.resolve(srcPath, 'index.html');
+  }
   var config = {
     srcPath: srcPath,
     testPath: testPath,
@@ -58,10 +65,9 @@ function getAppConfig() { /*eslint complexity: [error, 22]*/
     distPath: distPath,
     dist: appConfig.dist || path.resolve(distPath),
     genPath: genPath,
-    indexFiles: appConfig.indexFiles || defaultAppConfig.indexFiles,
+    indexFiles: indexFiles,
     gen: appConfig.gen || path.resolve(genPath),
     globals: appConfig.globals || defaultAppConfig.globals,
-    index: appConfig.index || path.resolve(srcPath, 'index.html'),
     entry: appConfig.entry || defaultAppConfig.entry,
     mangle: appConfig.mangle || defaultAppConfig.mangle,
     proxy: appConfig.proxy || defaultAppConfig.proxy,
