@@ -14,6 +14,9 @@ var appConfig = {
     jquery: "jQuery",
     "windows.jQuery": "jquery"
   },
+  chunks: {
+    name: ['polyfills', 'vendor'].reverse()
+  },
   entry: {
     app: srcPath + '/app.js'
   },
