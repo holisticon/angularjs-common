@@ -277,7 +277,7 @@ module.exports = {
      */
     new HtmlWebpackPlugin({
       template: appConfig.index,
-      chunks: ['app'],
+      chunks: ['app', 'polyfills', 'vendor'],
       chunksSortMode: 'dependency'
     }),
     new webpack.DefinePlugin({
