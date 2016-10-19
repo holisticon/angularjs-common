@@ -30,7 +30,8 @@ var appConfig = {
   proxy: {
     '*': 'http://localhost:8080' // REST service
   },
-  title: 'App'
+  title: 'App',
+  additionalWebpackOptions: false
 };
 
 // export default config

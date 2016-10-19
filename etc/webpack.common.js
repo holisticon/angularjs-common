@@ -301,5 +301,9 @@ for (var indexConfig of appConfig.indexFiles) {
   config.plugins.push(new HtmlWebpackPlugin(indexConfig));
 }
 
+// add additional settings here
+if (appConfig.additionalWebpackOptions) {
+  config = webpackMerge(config, appConfig.additionalWebpackOptions);
+}
 debugLog('Using following webpack common config:', config);
 module.exports = config;

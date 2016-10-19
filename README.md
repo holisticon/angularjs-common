@@ -162,25 +162,17 @@ var appConfig = {
   dist: distRoot,
   proxy: {
     '*': 'http://localhost:8080' // REST service
+  },
+  additionalWebpackOptions: {
+    plugins {
+      /* show only de and en locale */
+      new webpack.NormalModuleReplacementPlugin(
+        /moment[\/\\]locale$/,
+        /de|en/
+      )
+    }
   }
 };
 module.exports = appConfig;
-
-```
-
-```
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const appConfig = require('./etc/appConfig');
-process.env['APP_CONFIG'] = require("path").resolve(__dirname, 'etc', 'appConfig.js');
-var webpackConfig = require('@holisticon/angularjs-common').webpack;
-// show only de and en locale
-webpackConfig.plugins.push(
-  new webpack.NormalModuleReplacementPlugin(
-    /moment[\/\\]locale$/,
-    /de|en/
-  )
-);
-module.exports = webpackConfig;
 
 ```
