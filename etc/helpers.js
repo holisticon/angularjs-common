@@ -2,7 +2,7 @@ const path = require('path');
 const util = require('util');
 const debugLog = util.debuglog('@holisticon/angularjs-common/helpers');
 const defaultAppConfig = require('./appConfig');
-const appConfig = require(process.env.APP_CONFIG || './appConfig');
+const providedAppConfig = require(process.env.APP_CONFIG || './appConfig');
 
 // Helper functions
 var ROOT = path.resolve(__dirname, '..');
@@ -28,8 +28,7 @@ function checkNodeImport(context, request, cb) {
   cb();
 }
 
-function getAppConfig() { /*eslint complexity: [error, 22]*/
-
+function mergeAppConfig(appConfig) { /*eslint complexity: [error, 22]*/
   var basePath = path.resolve(process.cwd()),
     appName = appConfig.appName || defaultAppConfig.appName,
     srcPath = appConfig.srcPath || defaultAppConfig.srcPath,
@@ -75,6 +74,11 @@ function getAppConfig() { /*eslint complexity: [error, 22]*/
   return config;
 }
 
+function getAppConfig() {
+  return mergeAppConfig(providedAppConfig);
+}
+
+exports.mergeAppConfig = mergeAppConfig;
 exports.getAppConfig = getAppConfig;
 exports.hasProcessFlag = hasProcessFlag;
 exports.isWebpackDevServer = isWebpackDevServer;

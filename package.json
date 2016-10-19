@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run eslint",
     "debug": "cross-env NODE_ENV=test karma start etc/karma.conf.js",
-    "test": "cross-env NODE_ENV=test karma start etc/karma.conf.ci.js",
+    "test": "cross-env NODE_ENV=test jasmine-node test/*.spec.js --junitreport --output target/test-reports/ && karma start etc/karma.conf.ci.js",
     "eslint": "eslint \"lib/*\" && eslint \"etc/*\"",
     "check": "npm run eslint && nsp check"
   },
@@ -82,7 +82,8 @@
   "devDependencies": {
     "angular": "1.5.8",
     "angular-mocks": "1.5.8",
-    "eslint-plugin-es6-recommended": "0.1.2"
+    "eslint-plugin-es6-recommended": "0.1.2",
+    "jasmine-node": "1.14.5"
   },
   "peerDependencies": {
     "angular": "^1.5.8",

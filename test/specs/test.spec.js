@@ -1,4 +1,4 @@
-describe('Test Controller', () => {
+describe('Test Angular karma Setup', () => {
 
   let controller;
 
