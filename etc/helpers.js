@@ -28,8 +28,9 @@ function checkNodeImport(context, request, cb) {
   cb();
 }
 
-function mergeAppConfig(appConfig) { /*eslint complexity: [error, 22]*/
-  var basePath = path.resolve(process.cwd()),
+function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 22]*/
+  var appConfig = overwrittenConfig || {},
+    basePath = path.resolve(process.cwd()),
     appName = appConfig.appName || defaultAppConfig.appName,
     srcPath = appConfig.srcPath || defaultAppConfig.srcPath,
     testPath = appConfig.testPath || defaultAppConfig.testPath,

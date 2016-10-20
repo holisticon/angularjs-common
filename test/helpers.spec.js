@@ -1,13 +1,9 @@
 const path = require('path');
 
-var getAppConfig,
-  mergeAppConfig;
 
-beforeEach(inject(() => {
-  getAppConfig = require('../etc/helpers').getAppConfig;
-  mergeAppConfig = require('../etc/helpers').getAppConfig;
+var getAppConfig = require('../etc/helpers').getAppConfig,
+  mergeAppConfig = require('../etc/helpers').mergeAppConfig;
 
-}));
 describe('getAppConfig', () => {
 
   it('should read appConfig', () => {
@@ -19,23 +15,34 @@ describe('getAppConfig', () => {
 
 describe('mergeAppConfig', () => {
 
-  it('should read default to appConfig', () => {
-    var appConfig = mergeAppConfig();
-    expect(appConfig).toBeDefined();
+  it('should read default appConfig', () => {
+    var config = mergeAppConfig();
+    expect(config).toBeDefined();
+    expect(JSON.stringify(config)).toBe(JSON.stringify(getAppConfig()));
+  });
+
+  it('should work with null config', () => {
+    var config = mergeAppConfig(null);
+    expect(config).toBeDefined();
+    expect(JSON.stringify(config)).toBe(JSON.stringify(getAppConfig()));
   });
 
   it('should work with empty config', () => {
-    var appConfig = mergeAppConfig({});
-    expect(appConfig.srcSASS).toBeDefined();
+    var config = mergeAppConfig({});
+    expect(config).toBeDefined();
+    expect(JSON.stringify(config)).toBe(JSON.stringify(getAppConfig()));
   });
 
   it('should work with overwritten config', () => {
-    var appConfig = mergeAppConfig({srcPath: 'src', testPath: 'tests'});
-    expect(appConfig.src).toBe(path.resolve(__dirname, '..', 'src'));
-    expect(appConfig.srcSASS).toBe(path.resolve(__dirname, '..', 'src', 'scss'));
-    expect(appConfig.srcI18N).toBe(path.resolve(__dirname, '..', 'src', 'app', 'i18n'));
-    expect(appConfig.srcIMG).toBe(path.resolve(__dirname, '..', 'src', 'img'));
-    expect(appConfig.test).toBe(path.resolve(__dirname, '..', 'tests'));
+    var config = mergeAppConfig({srcPath: 'src', testPath: 'tests'});
+    expect(config).toBeDefined();
+    expect(JSON.stringify(config)).not.toBe(JSON.stringify(getAppConfig()));
+    expect(config.src).toBe(path.resolve(__dirname, '..', 'src'));
+    expect(config.srcSASS).toBe(path.resolve(__dirname, '..', 'src', 'scss'));
+    expect(config.srcI18N).toBe(path.resolve(__dirname, '..', 'src', 'app', 'i18n'));
+    expect(config.srcIMG).toBe(path.resolve(__dirname, '..', 'src', 'img'));
+    expect(config.test).toBe(path.resolve(__dirname, '..', 'tests'));
+    expect(config.indexFiles[0].template).toBe(path.resolve(__dirname, '..', 'src', 'index.html'));
   });
 
 });
