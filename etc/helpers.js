@@ -28,6 +28,32 @@ function checkNodeImport(context, request, cb) {
   cb();
 }
 
+
+
+/**
+ * Takes the default config and merge it with the provided overwrites
+ * @param overwrittenConfig with overwrites
+ * @returns config object
+ * @example
+ *      {
+ *      src: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/test/app',
+ *     test: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/test/specs',
+ *     templates: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/scripts/templates',
+ *     srcPath: 'test/app',
+ *     testPath: 'test/specs',
+ *     testSpecs: 'test/specs/**\/*.spec.ts',
+ *     testBundlePath: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/etc/spec-bundle.js',
+ *     testTitle: 'Holisticon - AngularBuildCommon',
+ *     srcApp: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/test/app',
+ *     srcSASS: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/test/app/scss',
+ *     srcI18N: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/test/app/app/i18n',
+ *     srcIMG: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/test/app/img',
+ *     index: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/test/app/index.html',
+ *     dist: '/Users/mreinhardt/Documents/Programmierung/repositories/git/job/holisticon/angular-common/dist',
+ *     distPath: 'dist',
+ *     additionalWebpackOptions: false
+  *    }
+ */
 function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 22]*/
   var appConfig = overwrittenConfig || {},
     basePath = path.resolve(process.cwd()),
@@ -75,6 +101,9 @@ function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 22]*/
   return config;
 }
 
+/**
+ * Use the provided (as process.env var) config file and merge it with the default
+ */
 function getAppConfig() {
   return mergeAppConfig(providedAppConfig);
 }
