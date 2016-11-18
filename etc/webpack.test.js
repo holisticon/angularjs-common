@@ -58,7 +58,29 @@ var config = webpackMerge(commonConfig, {
       }
 
     ]
-  }
+  },
+
+  /**
+   * Add additional plugins to the compiler.
+   *
+   * See: http://webpack.github.io/docs/configuration.html#plugins
+   */
+  plugins: [
+    new webpack.SourceMapDevToolPlugin({
+      filename: null, // if no value is provided the sourcemap is inlined
+      test: /\.(ts|js)($|\?)/i // process .js and .ts files only
+    }),
+    new webpack.DefinePlugin({
+      'ENV': JSON.stringify(ENV),
+      'HMR': false,
+      'process.env': {
+        'ENV': JSON.stringify(ENV),
+        'NODE_ENV': JSON.stringify(ENV),
+        'HMR': false
+      },
+      'APP_CONFIG': JSON.stringify(appConfig)
+    })
+  ]
 });
 
 debugLog('Using following webpack test config:', config);
