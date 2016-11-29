@@ -44,6 +44,33 @@ var config = webpackMerge(commonConfig, {
   module: {
 
     /**
+     * An array of applied pre and post loaders.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
+     */
+    postLoaders: [
+
+      /**
+       * Instruments JS files with Istanbul for subsequent code coverage reporting.
+       * Instrument only testing sources.
+       *
+       * See: https://github.com/deepsweet/istanbul-instrumenter-loader
+       */
+      {
+        test: /\.(js|ts)$/,
+        loader: 'istanbul-instrumenter-loader',
+        include: [
+          appConfig.srcPath,
+          appConfig.testPath
+        ],
+        exclude: [
+          /\.(e2e|spec)\.ts$/,
+          /node_modules/
+        ]
+      }
+
+    ],
+    /**
      * An array of automatically applied loaders.
      *
      * IMPORTANT: The loaders here are resolved relative to the resource which they are applied to.
@@ -69,6 +96,16 @@ var config = webpackMerge(commonConfig, {
     new webpack.SourceMapDevToolPlugin({
       filename: null, // if no value is provided the sourcemap is inlined
       test: /\.(ts|js)($|\?)/i // process .js and .ts files only
+    }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.ts/i,
+      options: {
+        tslint: {
+          enforce: 'pre',
+          emitErrors: true,
+          failOnHint: false
+        }
+      }
     }),
     new webpack.DefinePlugin({
       'ENV': JSON.stringify(ENV),

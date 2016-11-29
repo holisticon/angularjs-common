@@ -17,6 +17,8 @@ debugLog('Using following appConfig:', appConfig);
 const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
+const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 
 /*
  * Webpack Constants
@@ -115,6 +117,19 @@ var config = {
     preLoaders: [
 
       /*
+       * Tslint loader support for *.ts files
+       *
+       * See: https://github.com/wbuchwalter/tslint-loader
+       */
+      {
+        test: /\.ts$/,
+        loader: 'tslint-loader',
+        exclude: [
+          /node_modules/,
+          /\.(html|css|sass)$/
+        ]
+      },
+      /*
        * Source map loader support for *.js files
        * Extracts SourceMaps for source files that as added as sourceMappingURL comment.
        *
@@ -135,6 +150,16 @@ var config = {
      * See: http://webpack.github.io/docs/configuration.html#module-loaders
      */
     loaders: [
+      /*
+       * Typescript loader support for .ts and Angular 2 async routes via .async.ts
+       *
+       * See: https://github.com/s-panferov/awesome-typescript-loader
+       */
+      // note that babel-loader is configured to run after ts-loader
+      {
+        test: /\.ts$/,
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+      },
       /*
        *  Babel- and ESLint-Loader
        */
@@ -220,6 +245,21 @@ var config = {
    * See: http://webpack.github.io/docs/configuration.html#plugins
    */
   plugins: [
+
+    /**
+     * Advanced typescript path resolution
+     *
+     * See: https://github.com/s-panferov/awesome-typescript-loader#advanced-path-resolution-in-typescript-20
+     */
+    new TsConfigPathsPlugin(),
+
+    /*
+     * Plugin: ForkCheckerPlugin
+     * Description: Do type checking in a separate process, so webpack don't need to wait.
+     *
+     * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
+     */
+    new ForkCheckerPlugin(),
 
     /*
      * Plugin: OccurenceOrderPlugin
