@@ -102,11 +102,10 @@
     "xml2js": "0.4.17"
   },
   "devDependencies": {
-    "@types/angularjs": "1.5.8",
+    "@types/angularjs": "1.5.14-alpha",
     "angular": "1.5.8",
     "angular-mocks": "1.5.8",
     "conventional-changelog-cli": "1.2.0",
-    "eslint-plugin-es6-recommended": "0.1.2",
     "ink-docstrap": "1.3.0",
     "jasmine-node": "1.14.5"
   },
