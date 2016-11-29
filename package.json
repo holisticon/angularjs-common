@@ -102,7 +102,7 @@
     "xml2js": "0.4.17"
   },
   "devDependencies": {
-    "@types/angularjs": "1.5.14-alpha",
+    "@types/angular": "1.5.8",
     "angular": "1.5.8",
     "angular-mocks": "1.5.8",
     "conventional-changelog-cli": "1.2.0",
@@ -110,7 +110,7 @@
     "jasmine-node": "1.14.5"
   },
   "peerDependencies": {
-    "@types/angularjs": "^1.5.8",
+    "@types/angular": "^1.5.8",
     "angular": "^1.5.8",
     "angular-mocks": "^1.5.8",
     "cross-env": "^3.1.2"
