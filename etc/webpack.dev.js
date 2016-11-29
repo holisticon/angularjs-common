@@ -3,6 +3,7 @@
  */
 
 const helpers = require('./helpers');
+const webpack = require('webpack');
 const path = require('path');
 const util = require('util');
 const debugLog = util.debuglog('@holisticon/angularjs-common/webpack.dev');
