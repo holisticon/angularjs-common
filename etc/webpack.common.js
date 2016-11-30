@@ -158,7 +158,7 @@ var config = {
       // note that babel-loader is configured to run after ts-loader
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+        loaders: ['awesome-typescript-loader']
       },
       /*
        *  Babel- and ESLint-Loader
@@ -166,7 +166,7 @@ var config = {
       {
         test: /\.js$/,
         loaders: ['babel-loader', 'eslint-loader'],
-        exclude: [/\.(spec|e2e)\.ts$/]
+        exclude: [/\.ts$/]
       },
       /*
        * Json loader support for *.json files.

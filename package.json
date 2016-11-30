@@ -22,7 +22,6 @@
   "dependencies": {
     "@types/core-js": "0.9.34",
     "@types/jasmine": "2.5.35",
-    "@types/node": "4.0.29",
     "@types/source-map": "0.1.28",
     "@types/uglify-js": "2.6.28",
     "awesome-typescript-loader": "2.2.4",
@@ -72,6 +71,7 @@
     "nsp": "2.6.2",
     "open-browser-webpack-plugin": "0.0.2",
     "perfjankie": "2.1.2",
+    "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "2.1.13",
     "plist": "2.0.1",
     "protractor": "4.0.9",
