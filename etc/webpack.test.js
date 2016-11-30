@@ -3,6 +3,7 @@
  */
 
 const helpers = require('./helpers');
+const webpack = require('webpack');
 const util = require('util');
 const debugLog = util.debuglog('@holisticon/angularjs-common/webpack.dev');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
