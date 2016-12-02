@@ -82,8 +82,8 @@ function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 24]*/
   } else {
     junit = {
       outputDir: path.resolve(basePath, 'dist', 'test-reports'), // results will be saved as $outputDir/$browserName.xml
-      outputFile: 'TEST-' + defaultAppConfig.junit.name + '.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
-      suite: defaultAppConfig.junit.name, // suite will become the package name attribute in xml testsuite element
+      outputFile: 'TEST-' + defaultAppConfig.junit.title + '.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: defaultAppConfig.junit.title, // suite will become the package name attribute in xml testsuite element
       useBrowserName: false // add browser name to report and classes names
     }
   }
@@ -92,7 +92,7 @@ function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 24]*/
     testPath: testPath,
     src: sourceResolved,
     test: testPathResolved,
-    junit:junit,
+    junit: junit,
     templates: templatesResolved || srcPath + '/' + templatesPath,
     templatesPath: templatesPath,
     srcSASS: appConfig.srcSASS || path.resolve(sourceResolved, 'scss'),
