@@ -53,7 +53,7 @@ function checkNodeImport(context, request, cb) {
  *     additionalWebpackOptions: false
   *    }
  */
-function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 22]*/
+function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 24]*/
   var appConfig = overwrittenConfig || {},
     basePath = path.resolve(process.cwd()),
     appName = appConfig.appName || defaultAppConfig.appName,
@@ -72,11 +72,27 @@ function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 22]*/
     // refresh with current source path
     indexFiles[0].template = path.resolve(srcPath, 'index.html');
   }
+  if (appConfig.junit) {
+    junit = {
+      outputDir: path.resolve(basePath, appConfig.junit.dir), // results will be saved as $outputDir/$browserName.xml
+      outputFile: 'TEST-' + appConfig.junit.title + '.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: appConfig.junit.title, // suite will become the package name attribute in xml testsuite element
+      useBrowserName: false // add browser name to report and classes names
+    }
+  } else {
+    junit = {
+      outputDir: path.resolve(basePath, 'dist', 'test-reports'), // results will be saved as $outputDir/$browserName.xml
+      outputFile: 'TEST-' + defaultAppConfig.junit.name + '.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: defaultAppConfig.junit.name, // suite will become the package name attribute in xml testsuite element
+      useBrowserName: false // add browser name to report and classes names
+    }
+  }
   var config = {
     srcPath: srcPath,
     testPath: testPath,
     src: sourceResolved,
     test: testPathResolved,
+    junit:junit,
     templates: templatesResolved || srcPath + '/' + templatesPath,
     templatesPath: templatesPath,
     srcSASS: appConfig.srcSASS || path.resolve(sourceResolved, 'scss'),

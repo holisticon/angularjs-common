@@ -87,7 +87,24 @@ If you run `npm run watch` you can see your dependency statistics at [localhost:
 
 ### Advanced Usage
 
-* Multiple apps:
+#### JUnit-Report customization
+
+```javascript
+...
+var appConfig = {
+  ...
+    junit: {
+    title: 'MyProject',
+    dir: 'dist/test-reports'
+  },
+  ...
+};
+
+module.exports = appConfig;
+
+```
+
+#### Multiple apps
 
 ```
 var path = require("path");

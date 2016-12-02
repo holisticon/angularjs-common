@@ -5,6 +5,10 @@ var appConfig = {
   appName: 'app.js',
   srcPath: srcPath,
   testPath: 'test',
+  junit: {
+    title: 'AngularJSCommon',
+    dir: 'dist/test-reports'
+  },
   templatesPath: 'templates',
   distPath: 'dist',
   genPath: 'src-gen',

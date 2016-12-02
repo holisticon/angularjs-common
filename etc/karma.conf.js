@@ -14,6 +14,8 @@ var testPath = appConfig.testPath;
 var testSpecs = appConfig.testSpecs;
 var templatesPath = appConfig.templatesPath;
 
+const JUNIT = appConfig.junit;
+
 webpackConfig.entry = {};
 
 module.exports = function (config) {
@@ -53,10 +55,7 @@ module.exports = function (config) {
       'kjhtml'
     ],
 
-    junitReporter: {
-      outputDir: './target/test-reports', // results will be saved as $outputDir/$browserName.xml
-      suite: appConfig.testsuiteName || 'app'
-    },
+    junitReporter: JUNIT,
 
     coverageReporter: {
       dir: '../target/coverage/',
