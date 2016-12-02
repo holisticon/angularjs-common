@@ -100,6 +100,7 @@ var sourceRoot = path.resolve(__dirname, '..', 'src', 'main', 'frontend'),
 var appConfig = {
   srcPath: 'src/main/frontend',
   testPath: 'src/test/frontend',
+  testSpecs: '/specs/**/*.ts',
   templatesPath: 'src/main/frontend/scripts/templates',
   entry: {
     app: sourceRoot + '/scripts/app.js',

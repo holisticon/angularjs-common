@@ -29,7 +29,6 @@ function checkNodeImport(context, request, cb) {
 }
 
 
-
 /**
  * Takes the default config and merge it with the provided overwrites
  * @param overwrittenConfig with overwrites
@@ -84,7 +83,7 @@ function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 22]*/
     srcI18N: appConfig.srcI18N || path.resolve(sourceResolved, 'app', 'i18n'),
     srcIMG: appConfig.srcIMG || path.resolve(sourceResolved, 'img'),
     modulesPath: appConfig.modulesPath || path.resolve(basePath, 'node_modules'),
-    testSpecs: testPath + '/specs/**/*.js',
+    testSpecs: testPath + (appConfig.testSpecs || '/specs/**/*.js'),
     distPath: distPath,
     dist: appConfig.dist || path.resolve(distPath),
     genPath: genPath,
