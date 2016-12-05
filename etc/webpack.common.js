@@ -74,10 +74,6 @@ var config = {
     // Make sure root is src
     root: appConfig.src,
 
-    alias: {
-      angular: path.resolve(appConfig.modulesPath, 'angular/angular.js')
-    },
-
     packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'],
 
     // remove other default values
@@ -227,13 +223,6 @@ var config = {
       {
         test: /\.xml/,
         loader: 'raw-loader'
-      },
-      /*
-       * Exports Angular
-       */
-      {
-        test: /[\/]angular.js$/,
-        loader: "exports?angular"
       }
     ]
 
@@ -260,16 +249,6 @@ var config = {
      * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
      */
     new ForkCheckerPlugin(),
-
-    /*
-     * Plugin: OccurenceOrderPlugin
-     * Description: Varies the distribution of the ids to get the smallest id length
-     * for often used ids.
-     *
-     * See: https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
-     * See: https://github.com/webpack/docs/wiki/optimization#minimize
-     */
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.ProvidePlugin(appConfig.globals || {
         PouchDB: "pouchdb",
         jquery: "jQuery",

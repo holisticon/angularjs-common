@@ -98,7 +98,15 @@ var config = webpackMerge(commonConfig, {
    */
   plugins: [
 
-    new webpack.optimize.OccurenceOrderPlugin(),
+    /*
+     * Plugin: OccurenceOrderPlugin
+     * Description: Varies the distribution of the ids to get the smallest id length
+     * for often used ids.
+     *
+     * See: https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
+     * See: https://github.com/webpack/docs/wiki/optimization#minimize
+     */
+    new webpack.optimize.OccurrenceOrderPlugin(true),
     /*
      * Plugin: CommonsChunkPlugin
      * Description: Shares common code between the pages.
