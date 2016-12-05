@@ -30,7 +30,7 @@ node {
     }
 
     stage('Test') {
-      sh "npm run test"
+      sh "npm run test && npm run e2e"
       junit 'target/test-reports/TEST*.xml'
     }
 

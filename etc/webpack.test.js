@@ -13,7 +13,8 @@ const appConfig = helpers.getAppConfig();
 /**
  * Webpack Plugins
  */
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const SourceMapDevToolPlugin = require('webpack/lib/SourceMapDevToolPlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 
 /**
@@ -94,11 +95,11 @@ var config = webpackMerge(commonConfig, {
    * See: http://webpack.github.io/docs/configuration.html#plugins
    */
   plugins: [
-    new webpack.SourceMapDevToolPlugin({
+    new SourceMapDevToolPlugin({
       filename: null, // if no value is provided the sourcemap is inlined
       test: /\.(ts|js)($|\?)/i // process .js and .ts files only
     }),
-    new webpack.LoaderOptionsPlugin({
+    new LoaderOptionsPlugin({
       test: /\.ts/i,
       options: {
         tslint: {
@@ -108,7 +109,7 @@ var config = webpackMerge(commonConfig, {
         }
       }
     }),
-    new webpack.DefinePlugin({
+    new DefinePlugin({
       'ENV': JSON.stringify(ENV),
       'HMR': false,
       'process.env': {
