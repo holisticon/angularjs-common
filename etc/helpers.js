@@ -65,7 +65,8 @@ function mergeAppConfig(overwrittenConfig) { /*eslint complexity: [error, 24]*/
     distPath = appConfig.distPath || defaultAppConfig.distPath,
     genPath = appConfig.genPath || defaultAppConfig.genPath,
     templatesResolved = path.resolve(basePath, templatesPath);
-  var indexFiles = defaultAppConfig.indexFiles;
+  var indexFiles = defaultAppConfig.indexFiles,
+    junit;
   if (appConfig.indexFiles) {
     indexFiles = appConfig.indexFiles;
   } else {
