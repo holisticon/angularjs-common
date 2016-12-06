@@ -71,6 +71,10 @@ var config = {
      */
     extensions: ['', '.ts', '.js', '.jsx', '.json'],
 
+    alias: {
+      angular: path.resolve(appConfig.modulesPath, 'angular')
+    },
+
     // Make sure root is src
     root: appConfig.src,
 
@@ -102,6 +106,9 @@ var config = {
 
     noParse: [
       /lie.js/,
+      /angular\.src\.js/,
+      path.resolve(appConfig.modulesPath, 'angular/angular.js'),
+      path.resolve(appConfig.modulesPath, 'angular/angular-mocks.js'),
       path.resolve(appConfig.modulesPath, 'angular/angular.min.js')
     ],
 
@@ -133,7 +140,10 @@ var config = {
        */
       {
         test: /\.js$/,
-        loader: 'source-map-loader'
+        loader: 'source-map-loader',
+        exclude: [
+          /node_modules/
+        ]
       }
     ],
 
@@ -162,7 +172,10 @@ var config = {
       {
         test: /\.js$/,
         loaders: ['babel-loader', 'eslint-loader'],
-        exclude: [/\.ts$/]
+        exclude: [
+          /\.ts$/,
+          /node_modules/
+        ]
       },
       /*
        * Json loader support for *.json files.
@@ -223,6 +236,13 @@ var config = {
       {
         test: /\.xml/,
         loader: 'raw-loader'
+      },
+      /*
+       * Exports Angular
+       */
+      {
+        test: /[\/]angular.js$/,
+        loader: "exports?angular"
       }
     ]
 

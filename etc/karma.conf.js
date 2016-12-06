@@ -21,6 +21,10 @@ webpackConfig.entry = {};
 module.exports = function (config) {
   'use strict';
   config.set({
+
+    // see https://github.com/karma-runner/karma-junit-reporter/issues/61
+    browserNoActivityTimeout: 30000,
+
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
@@ -34,7 +38,7 @@ module.exports = function (config) {
     files: [
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      '**/*.html'
+      {pattern: '**/*.html', included: false}
     ],
 
     // list of files / patterns to exclude

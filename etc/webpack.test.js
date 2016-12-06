@@ -70,22 +70,6 @@ var config = webpackMerge(commonConfig, {
           /node_modules/
         ]
       }
-
-    ],
-    /**
-     * An array of automatically applied loaders.
-     *
-     * IMPORTANT: The loaders here are resolved relative to the resource which they are applied to.
-     * This means they are not resolved relative to the configuration file.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#module-loaders
-     */
-    loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel'
-      }
-
     ]
   },
 
