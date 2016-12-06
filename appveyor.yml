@@ -6,7 +6,7 @@ environment:
     - NPM_VERSION: "4"
 
 install:
-  - npm install npm@%NPM_VERSION%
+  - npm install -g npm@%NPM_VERSION%
   # Output useful info for debugging.
   - node --version
   - npm --version
