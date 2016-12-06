@@ -1,3 +1,13 @@
+<a name="0.4.1"></a>
+## [0.4.1](https://github.com/holisticon/angularjs-common/compare/v0.4.0...v0.4.1) (2016-12-06)
+
+
+### Features
+
+* **build:** Speed up build ([eec2937](https://github.com/holisticon/angularjs-common/commit/eec2937))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/holisticon/angularjs-common/compare/v0.3.0...v0.4.0) (2016-12-05)
 
