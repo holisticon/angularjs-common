@@ -1,8 +1,9 @@
 # appveyor file
 # http://www.appveyor.com/docs/appveyor-yml
 environment:
-  - NPM_VERSION: 3.10.7
-  - NPM_VERSION: 4
+  matrix:
+    - NPM_VERSION: "3.10.7"
+    - NPM_VERSION: "4"
 
 install:
   - npm install npm@$env:NPM_VERSION
