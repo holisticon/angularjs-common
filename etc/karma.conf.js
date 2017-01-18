@@ -30,6 +30,11 @@ module.exports = function (config) {
 
     basePath: process.cwd(),
 
+    // see https://github.com/angular/angular-cli/issues/2125
+    mime: {
+      'text/x-typescript': ['ts', 'tsx']
+    },
+
     frameworks: [
       'jasmine'
     ],
