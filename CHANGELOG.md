@@ -1,3 +1,14 @@
+<a name="0.4.2"></a>
+## [0.4.2](https://github.com/holisticon/angularjs-common/compare/v0.4.1...v0.4.2) (2017-01-18)
+
+
+### Bug Fixes
+
+* **karma:** Fix chrome mimetype issues in karma ([952789e](https://github.com/holisticon/angularjs-common/commit/952789e))
+* **karma-timeout:** Use newer karma-junit-reporter ([cf12675](https://github.com/holisticon/angularjs-common/commit/cf12675))
+
+
+
 <a name="0.4.1"></a>
 ## [0.4.1](https://github.com/holisticon/angularjs-common/compare/v0.4.0...v0.4.1) (2016-12-06)
 
