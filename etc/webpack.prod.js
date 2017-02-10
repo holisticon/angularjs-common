@@ -145,7 +145,8 @@ var config = webpackMerge(commonConfig, {
      */
     // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
     new DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      metadata: METADATA
     }),
 
     /**
@@ -182,24 +183,6 @@ var config = webpackMerge(commonConfig, {
       comments: false //prod
     })
   ],
-
-  /**
-   * Html loader advanced options
-   *
-   * See: https://github.com/webpack/html-loader#advanced-options
-   */
-  htmlLoader: {
-    minimize: true,
-    removeAttributeQuotes: false,
-    caseSensitive: true,
-    customAttrSurround: [
-      [/#/, /(?:)/],
-      [/\*/, /(?:)/],
-      [/\[?\(?/, /(?:)/]
-    ],
-    customAttrAssign: [/\)?\]?=/]
-  }
-  ,
 
   /*
    * Include polyfills or mocks for various node stuff

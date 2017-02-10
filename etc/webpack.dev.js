@@ -37,14 +37,6 @@ const METADATA = webpackMerge(commonConfig.metadata, {
  */
 var config = webpackMerge(commonConfig, {
 
-
-  /**
-   * Merged metadata from webpack.common.js for index.html
-   *
-   * See: (custom attribute)
-   */
-  metadata: METADATA,
-
   /**
    * Switch loaders to debug mode.
    *
@@ -150,22 +142,12 @@ var config = webpackMerge(commonConfig, {
         'ENV': JSON.stringify(METADATA.ENV),
         'NODE_ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR
-      }
+      },
+      metadata: METADATA
     }),
     new OpenBrowserPlugin({url: 'http://localhost:3000/webpack-dev-server/'})
   ],
 
-  /**
-   * Static analysis linter for TypeScript advanced options configuration
-   * Description: An extensible linter for the TypeScript language.
-   *
-   * See: https://github.com/wbuchwalter/tslint-loader
-   */
-  tslint: {
-    emitErrors: false,
-    failOnHint: false,
-    resourcePath: 'src'
-  },
 
   /**
    * Webpack Development Server configuration
@@ -187,7 +169,7 @@ var config = webpackMerge(commonConfig, {
       aggregateTimeout: 300,
       poll: 1000
     },
-    outputPath: "http://" + METADATA.host + ":" + METADATA.port + appConfig.dist,
+    contentBase: "http://" + METADATA.host + ":" + METADATA.port + appConfig.dist,
     proxy: appConfig.proxy
   },
 
@@ -198,7 +180,7 @@ var config = webpackMerge(commonConfig, {
    * See: https://webpack.github.io/docs/configuration.html#node
    */
   node: {
-    global: 'window',
+    global: true,
     crypto: 'empty',
     process: true,
     module: false,

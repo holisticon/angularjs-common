@@ -16,7 +16,7 @@ var templatesPath = appConfig.templatesPath;
 
 const JUNIT = appConfig.junit;
 
-webpackConfig.entry = {};
+delete webpackConfig.entry;
 
 module.exports = function (config) {
   'use strict';

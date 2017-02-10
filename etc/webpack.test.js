@@ -50,7 +50,8 @@ var config = webpackMerge(commonConfig, {
      *
      * See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
      */
-    postLoaders: [
+    rules: [
+      // POST-LOADERS
 
       /**
        * Instruments JS files with Istanbul for subsequent code coverage reporting.
@@ -68,7 +69,8 @@ var config = webpackMerge(commonConfig, {
         exclude: [
           /\.(e2e|spec)\.ts$/,
           /node_modules/
-        ]
+        ],
+        enforce: 'post'
       }
     ]
   },

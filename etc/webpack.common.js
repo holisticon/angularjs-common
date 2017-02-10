@@ -18,7 +18,7 @@ const NgAnnotatePlugin = require('ng-annotate-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TsConfigPathsPlugin = require('awesome-typescript-loader').TsConfigPathsPlugin;
-const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
+const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 
 /*
  * Webpack Constants
@@ -40,13 +40,6 @@ var config = {
   bail: true,
 
   /*
-   * Static metadata for index.html
-   *
-   * See: (custom attribute)
-   */
-  metadata: METADATA,
-
-  /*
    * The entry point for the bundle
    * Our Angular.js app
    *
@@ -54,9 +47,6 @@ var config = {
    */
   entry: appConfig.entry,
 
-  resolveLoader: {
-    root: appConfig.modulesPath
-  },
   /*
    * Options affecting the resolving of modules.
    *
@@ -69,32 +59,17 @@ var config = {
      *
      * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
      */
-    extensions: ['', '.ts', '.js', '.jsx', '.json'],
+    extensions: ['.ts', '.js', '.jsx', '.json'],
 
     alias: {
-      angular: path.resolve(appConfig.modulesPath, 'angular')
+      angular: path.resolve('node_modules', 'angular')
     },
-
-    // Make sure root is src
-    root: appConfig.src,
-
-    packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'],
-
-    // remove other default values
-    modulesDirectories: appConfig.modulesDirectories || [appConfig.modulesPath]
-
-  },
-
-  htmlLoader: {
-    minimize: true,
-    removeAttributeQuotes: false,
-    caseSensitive: true,
-    customAttrSurround: [
-      [/#/, /(?:)/],
-      [/\*/, /(?:)/],
-      [/\[?\(?/, /(?:)/]
+    modules: [
+      appConfig.src,
+      'node_modules'
     ],
-    customAttrAssign: [/\)?\]?=/]
+
+    mainFields: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'],
   },
 
   /*
@@ -107,17 +82,21 @@ var config = {
     noParse: [
       /lie.js/,
       /angular\.src\.js/,
-      path.resolve(appConfig.modulesPath, 'angular/angular.js'),
-      path.resolve(appConfig.modulesPath, 'angular/angular-mocks.js'),
-      path.resolve(appConfig.modulesPath, 'angular/angular.min.js')
+      /angular\.js/,
+      /angular-mocks\.js/,
+      /angular\.min\.js/,
     ],
 
     /*
-     * An array of applied pre and post loaders.
+     * An array of automatically applied loaders.
      *
-     * See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
+     * IMPORTANT: The loaders here are resolved relative to the resource which they are applied to.
+     * This means they are not resolved relative to the configuration file.
+     *
+     * See: http://webpack.github.io/docs/configuration.html#module-loaders
      */
-    preLoaders: [
+    rules: [
+      // PRE-LOADERS
 
       /*
        * Tslint loader support for *.ts files
@@ -130,7 +109,8 @@ var config = {
         exclude: [
           /node_modules/,
           /\.(html|css|sass)$/
-        ]
+        ],
+        enforce: 'pre'
       },
       /*
        * Source map loader support for *.js files
@@ -143,19 +123,11 @@ var config = {
         loader: 'source-map-loader',
         exclude: [
           /node_modules/
-        ]
-      }
-    ],
+        ],
+        enforce: 'pre'
+      },
+      // LOADERS
 
-    /*
-     * An array of automatically applied loaders.
-     *
-     * IMPORTANT: The loaders here are resolved relative to the resource which they are applied to.
-     * This means they are not resolved relative to the configuration file.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#module-loaders
-     */
-    loaders: [
       /*
        * Typescript loader support for .ts and Angular 2 async routes via .async.ts
        *
@@ -213,7 +185,7 @@ var config = {
       // https://github.com/jtangelder/sass-loader#usage
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       },
       /*
        * to string and css loader support for *.css files
@@ -263,12 +235,12 @@ var config = {
     new TsConfigPathsPlugin(),
 
     /*
-     * Plugin: ForkCheckerPlugin
+     * Plugin: CheckerPlugin
      * Description: Do type checking in a separate process, so webpack don't need to wait.
      *
-     * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
+     * See: https://github.com/s-panferov/awesome-typescript-loader#configuration
      */
-    new ForkCheckerPlugin(),
+    new CheckerPlugin(),
     new webpack.ProvidePlugin(appConfig.globals || {
         PouchDB: "pouchdb",
         jquery: "jQuery",
@@ -320,7 +292,7 @@ var config = {
    * See: https://webpack.github.io/docs/configuration.html#node
    */
   node: {
-    global: 'window',
+    global: true,
     crypto: 'empty',
     module: false,
     clearImmediate: false,
