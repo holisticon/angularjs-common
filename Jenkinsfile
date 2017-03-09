@@ -4,8 +4,8 @@ properties properties: [
 ]
 
 node {
-
   def buildNumber = env.BUILD_NUMBER
+  def branchName = env.BRANCH_NAME
   def workspace = env.WORKSPACE
   def buildUrl = env.BUILD_URL
 
@@ -13,6 +13,7 @@ node {
   echo "workspace directory is $workspace"
   echo "build URL is $buildUrl"
   echo "build Number is $buildNumber"
+  echo "branch name is $branchName"
   echo "PATH is $env.PATH"
 
   try {
@@ -36,12 +37,12 @@ node {
 
     stage('Publish NPM snapshot') {
       def currentVersion = sh(returnStdout: true, script: "npm version | grep \"{\" | tr -s ':'  | cut -d \"'\" -f 4").trim()
-      def newVersion = "${currentVersion}-${buildNumber}"
+      def newVersion = "${currentVersion}-${branchName}-${buildNumber}"
       sh "npm version ${newVersion} --no-git-tag-version && npm publish --tag next"
     }
 
   } catch (e) {
-    rocketSend channel: 'jenkins', message: 'Fehler'
+    rocketSend channel: 'jenkins', emoji: ':rotating_light:', message: 'Fehler'
     throw e
   }
 
