@@ -1,9 +1,12 @@
 properties properties: [
   [$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '30', numToKeepStr: '10']],
-  [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/holisticon/angularjs-common'],
+  disableConcurrentBuilds()
 ]
 
-node {
+@Library('holisticon-build-library')
+def nodeJS = new de.holisticon.ci.jenkins.NodeJS()
+
+node('mac') {
   def buildNumber = env.BUILD_NUMBER
   def branchName = env.BRANCH_NAME
   def workspace = env.WORKSPACE
@@ -26,19 +29,19 @@ node {
     }
 
     stage('Build') {
-      sh "npm install"
-      sh "npm run build"
+      nodeJS.nvm('install')
+      nodeJS.nvmRun('build')
     }
 
     stage('Test') {
-      sh "npm run test && npm run e2e"
+      nodeJS.nvm('test')
+      nodeJS.nvm('e2e')
       junit 'target/test-reports/TEST*.xml'
+      junit 'target/e2e-reports/TEST*.xml'
     }
 
     stage('Publish NPM snapshot') {
-      def currentVersion = sh(returnStdout: true, script: "npm version | grep \"{\" | tr -s ':'  | cut -d \"'\" -f 4").trim()
-      def newVersion = "${currentVersion}-${branchName}-${buildNumber}"
-      sh "npm version ${newVersion} --no-git-tag-version && npm publish --tag next"
+      nodeJS.publishSnapshot('.', ${buildNumber}, ${branchName})
     }
 
   } catch (e) {
