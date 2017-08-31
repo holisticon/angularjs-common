@@ -69,7 +69,7 @@ var config = {
       'node_modules'
     ],
 
-    mainFields: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main'],
+    mainFields: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
   },
 
   /*
@@ -80,11 +80,12 @@ var config = {
   module: {
 
     noParse: [
+      /vis.js/,
       /lie.js/,
       /angular\.src\.js/,
       /angular\.js/,
       /angular-mocks\.js/,
-      /angular\.min\.js/,
+      /angular\.min\.js/
     ],
 
     /*
@@ -143,7 +144,7 @@ var config = {
        */
       {
         test: /\.js$/,
-        loaders: ['babel-loader', 'eslint-loader'],
+        loaders: ['babel-loader?compact=false', 'eslint-loader'],
         exclude: [
           /\.ts$/,
           /node_modules/
