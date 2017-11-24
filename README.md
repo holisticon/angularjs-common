@@ -1,5 +1,7 @@
 # AngularJS Common Module
 
+> **DEPRECATED** 
+
 [![Build Status](https://travis-ci.org/holisticon/angularjs-common.svg?branch=master)](https://travis-ci.org/holisticon/angularjs-common)
 [![Build status](https://ci.appveyor.com/api/projects/status/gu7s50q7ju332rd2?svg=true)](https://ci.appveyor.com/project/holisticon/angularjs-common)
 [![npm version](https://badge.fury.io/js/%40holisticon%2Fangularjs-common.svg)](https://badge.fury.io/js/%40holisticon%2Fangularjs-common)
