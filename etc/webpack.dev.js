@@ -37,20 +37,14 @@ const METADATA = webpackMerge(commonConfig.metadata, {
  */
 var config = webpackMerge(commonConfig, {
 
-  /**
-   * Switch loaders to debug mode.
-   *
-   * See: http://webpack.github.io/docs/configuration.html#debug
-   */
-  debug: true,
-
+  bail: false,
   /**
    * Developer tool to enhance debugging
    *
    * See: http://webpack.github.io/docs/configuration.html#devtool
    * See: https://github.com/webpack/docs/wiki/build-performance#sourcemaps
    */
-  devtool: 'source-map',
+  devtool: 'cheap-eval-source-map',
 
   /**
    * Options affecting the output of the compilation.
@@ -169,7 +163,6 @@ var config = webpackMerge(commonConfig, {
       aggregateTimeout: 300,
       poll: 1000
     },
-    contentBase: "http://" + METADATA.host + ":" + METADATA.port + appConfig.dist,
     proxy: appConfig.proxy
   },
 
@@ -191,4 +184,3 @@ var config = webpackMerge(commonConfig, {
 
 debugLog('Using following webpack dev config:', config);
 module.exports = config;
-
