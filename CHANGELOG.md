@@ -1,3 +1,13 @@
+<a name="0.5.3"></a>
+## [0.5.3](https://github.com/holisticon/angularjs-common/compare/v0.5.2...v0.5.3) (2018-12-19)
+
+
+### Bug Fixes
+
+* **Webpack:** Resolve webpack test errors ([dd47250](https://github.com/holisticon/angularjs-common/commit/dd47250))
+
+
+
 <a name="0.5.2"></a>
 ## [0.5.2](https://github.com/holisticon/angularjs-common/compare/v0.5.1...v0.5.2) (2018-12-19)
 
