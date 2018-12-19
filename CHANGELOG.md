@@ -1,3 +1,39 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/holisticon/angularjs-common/compare/v0.4.4...v0.5.0) (2018-12-19)
+
+
+### Bug Fixes
+
+* **Dev-Setup:** Updated node-sass to allow working with latest node version ([088b3ff](https://github.com/holisticon/angularjs-common/commit/088b3ff))
+
+
+
+<a name="0.4.4"></a>
+## [0.4.4](https://github.com/holisticon/angularjs-common/compare/v0.4.3...v0.4.4) (2018-12-19)
+
+
+### Bug Fixes
+
+* **Build:** Adding mangle option to fix build issues ([e60f803](https://github.com/holisticon/angularjs-common/commit/e60f803))
+
+
+
+<a name="0.4.3"></a>
+## [0.4.3](https://github.com/holisticon/angularjs-common/compare/v0.4.2...v0.4.3) (2017-11-24)
+
+
+### Features
+
+* **deprecation:** Discontinue this repo ([d53025f](https://github.com/holisticon/angularjs-common/commit/d53025f))
+* **webpack:** Update webpack and config ([a981a62](https://github.com/holisticon/angularjs-common/commit/a981a62))
+
+
+### BREAKING CHANGES
+
+* **deprecation:** DO NOT USE THIS REPO ANYMORE !!!
+
+
+
 <a name="0.4.2"></a>
 ## [0.4.2](https://github.com/holisticon/angularjs-common/compare/v0.4.1...v0.4.2) (2017-01-18)
 
