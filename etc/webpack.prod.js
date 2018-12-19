@@ -173,8 +173,8 @@ var config = webpackMerge(commonConfig, {
       // comments: true, //debug
       sourceMap: false, //prod
       beautify: false, //prod
-      mangle: {
-        except: appConfig.mangle.except || ['jQuery', 'angular'],
+      mangle: appConfig.mangle || {
+        except: ['jQuery', 'angular'],
         screw_ie8: true
       }, //prod
       compress: {
