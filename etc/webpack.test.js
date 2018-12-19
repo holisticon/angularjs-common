@@ -30,13 +30,15 @@ const ENV = process.env.ENV || process.env.NODE_ENV || 'test';
 
 var config = webpackMerge(commonConfig, {
 
+  bail: false,
+
   /**
    * Source map for Karma from the help of karma-sourcemap-loader &  karma-webpack
    *
    * Do not change, leave as is or it wont work.
    * See: https://github.com/webpack/karma-webpack#source-maps
    */
-  devtool: 'inline-source-map',
+  devtool: 'cheap-eval-source-map',
 
   /**
    * Options affecting the normal modules.
