@@ -1,6 +1,6 @@
 {
   "name": "@holisticon/angularjs-common",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Common angular build module for AngularJS 1.x",
   "main": "index.js",
   "scripts": {
