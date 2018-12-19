@@ -1,3 +1,13 @@
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/holisticon/angularjs-common/compare/v0.5.0...v0.5.1) (2018-12-19)
+
+
+### Bug Fixes
+
+* **Webpack:** Resolve webpack errors ([a4cfd24](https://github.com/holisticon/angularjs-common/commit/a4cfd24))
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/holisticon/angularjs-common/compare/v0.4.4...v0.5.0) (2018-12-19)
 
