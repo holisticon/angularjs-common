@@ -215,7 +215,7 @@ var config = {
        */
       {
         test: /[\/]angular.js$/,
-        loader: "exports?angular"
+        loader: "exports-loader?angular"
       }
     ]
 

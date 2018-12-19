@@ -17,7 +17,6 @@ const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const IgnorePlugin = require('webpack/lib/IgnorePlugin');
-const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
@@ -36,12 +35,6 @@ const METADATA = webpackMerge(commonConfig.metadata, {
 
 var config = webpackMerge(commonConfig, {
 
-  /**
-   * Switch loaders to debug mode.
-   *
-   * See: http://webpack.github.io/docs/configuration.html#debug
-   */
-  debug: false,
 
   /**
    * Developer tool to enhance debugging
@@ -125,16 +118,6 @@ var config = webpackMerge(commonConfig, {
     new WebpackMd5Hash(),
 
     /**
-     * Plugin: DedupePlugin
-     * Description: Prevents the inclusion of duplicate code into your bundle
-     * and instead applies a copy of the function at runtime.
-     *
-     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-     * See: https://github.com/webpack/docs/wiki/optimization#deduplication
-     */
-    new DedupePlugin(),
-
-    /**
      * Plugin: DefinePlugin
      * Description: Define free variables.
      * Useful for having development builds with debug logging or adding global constants.
@@ -173,10 +156,7 @@ var config = webpackMerge(commonConfig, {
       // comments: true, //debug
       sourceMap: false, //prod
       beautify: false, //prod
-      mangle: appConfig.mangle || {
-        except: ['jQuery', 'angular'],
-        screw_ie8: true
-      }, //prod
+      mangle: false, //prod
       compress: {
         screw_ie8: true
       }, //prod
@@ -191,7 +171,6 @@ var config = webpackMerge(commonConfig, {
    * See: https://webpack.github.io/docs/configuration.html#node
    */
   node: {
-    global: 'window',
     crypto: 'empty',
     process: true,
     module: false,
